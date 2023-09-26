@@ -19,6 +19,7 @@ public class WaveManager : MonoBehaviour
     IEnumerator SpawnWave()
     {
         WaveIndex++;
+
         NumofWaveText.text = "Wave " + WaveIndex.ToString();
         int NumofEnemy = WaveIndex + WaveIndex;        
         for (int i = 0; i < NumofEnemy; i++)

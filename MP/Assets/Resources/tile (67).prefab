@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f03d311fb98668e4f9880208e4bc7a83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.950001
+      value: 6.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f03d311fb98668e4f9880208e4bc7a83, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f03d311fb98668e4f9880208e4bc7a83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.830002
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f03d311fb98668e4f9880208e4bc7a83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -126,4 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hovercolor: {r: 0.7730153, g: 0.7838139, b: 0.7924528, a: 0}
-  offset: {x: 0, y: 1.5, z: -1}
+  notEnoughMoneycolor: {r: 0.8207547, g: 0.2431292, b: 0.2431292, a: 1}
+  offset_DoubelBarrel: {x: 0, y: 1.5, z: -1}
+  offset_Cannon: {x: 0, y: 1.2, z: 0.45}
+  turret: {fileID: 0}

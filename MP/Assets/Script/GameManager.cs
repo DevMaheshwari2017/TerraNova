@@ -5,13 +5,11 @@ using Photon.Pun;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    UIManager UI;
-    private int rand;
-    private Vector3 pos;
     [SerializeField]
     private GameObject PlPrefab;
     [SerializeField]
     private GameObject Canvas;
+    private bool isgameover;
     void Start()
     {
         UIManager UI = UIManager.Instance;
@@ -22,5 +20,20 @@ public class GameManager : MonoBehaviourPunCallbacks
             Canvas.SetActive(false);         
         }
 
+    }
+
+    private void Update()
+    {
+        if (isgameover)
+            return;
+        if(PlayerStats.lives <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Game Over");
     }
 }

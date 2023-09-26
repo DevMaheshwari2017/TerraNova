@@ -9,6 +9,8 @@ TagManager:
   - LoadingVP
   - Canvas
   - Enemy
+  - CannonTurret
+  - DoubleBarrelTurret
   layers:
   - Default
   - TransparentFX
