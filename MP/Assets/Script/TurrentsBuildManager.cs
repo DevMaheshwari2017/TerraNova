@@ -14,50 +14,41 @@ public class TurrentsBuildManager : MonoBehaviour
         instance = this;
     }
 
-
-    public GameObject DoubleBarrel_turrentprefab;
-    public GameObject cannon_turretprefab;
-    private Vector3 BuildingPosition;
-    [SerializeField]
-    private GameObject buildParticleEffect;
-
+    public GameObject buildParticleEffect;
+    public GameObject sellingParticleEffect;
     private TurretBlueprint turretToBuild;
+    private GroundHighlight SelectedGround;
+    [SerializeField]
+    private TurretUI turretui;
 
     public bool CanBuild {get { return turretToBuild != null; } }
     public bool HasMoney {get { return PlayerStats.Money >= turretToBuild.cost; } }
-  
+
+    public void SelectGround(GroundHighlight node)
+    {
+        if(SelectedGround == node)
+        {
+            DeselectGround();
+            return;
+        }
+        SelectedGround = node;
+        turretToBuild = null;
+        turretui.SetTarget(node);
+    }
+
+    public void DeselectGround()
+    {
+        SelectedGround = null;
+        turretui.HideUI();
+    }
     public void SelectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+        DeselectGround();
     }
-
-    public void BuildingTurretOn(GroundHighlight node)
+    
+    public TurretBlueprint GetTurretToBuild()
     {
-        if(PlayerStats.Money < turretToBuild.cost)
-        {
-            Debug.Log("Not enough crystals");
-            return;
-        }
-
-        PlayerStats.Money -= turretToBuild.cost;
-        Debug.Log(" AMount of crystals left after purcahsing turrets " + PlayerStats.Money);
-
-        if (turretToBuild.turretprefab.tag == "DoubleBarrelTurret")
-        {
-            Debug.Log("Double barrel offset");
-            BuildingPosition = node.GetDoubleShooterBuildPos();
-        }
-        else if (turretToBuild.turretprefab.tag == "CannonTurret")
-        {
-            Debug.Log("Cannon offset");
-            BuildingPosition = node.GetCannonBuildPos();
-        }
-
-        GameObject Turret = Instantiate(turretToBuild.turretprefab, BuildingPosition,  Quaternion.identity);
-        GameObject Effects = Instantiate(buildParticleEffect, node.transform.position, Quaternion.identity);
-        Destroy(Effects, 4f);
-        //setting the GroundHighlight/ our grounds turret object to out turret that we are instaniating, node.turret is empty/optional in our inspector. 
-        node.turret = Turret;
+        return turretToBuild;
     }
-   
 }

@@ -5,6 +5,9 @@ public class Turrets : MonoBehaviour
     [Header("Unity Inspector field")]
     [SerializeField]
     private Transform target;
+    private Enemy targetenemy;
+     
+    [Header("Bullet field")]
     [SerializeField]
     private GameObject BulletPrefab;
     [SerializeField]
@@ -15,30 +18,31 @@ public class Turrets : MonoBehaviour
     [SerializeField]
     private float range;
     [SerializeField]
-    private float rotationSpeed =1f;
+    private float rotationSpeed = 1f;
     [SerializeField]
     private float Firerate = 1f;
     private float fireCountDown;
 
 
+
     private void Awake()
     {
         target = null;
-       
+
     }
     void Start()
-    {      
+    {
         if (gameObject.CompareTag("DoubleBarrelTurret"))
         {
             BulletFirePoint_2 = transform.Find("BulletFirePoint_2");
             if (BulletFirePoint_2 == null)
             {
-              Debug.LogError("BulletFirePoint_2 not found as a child of the DoubleBarrelTurret.");
+                Debug.LogError("BulletFirePoint_2 not found as a child of the DoubleBarrelTurret.");
             }
         }
 
         //instead of checking if there's any enemy near us 60 times a sec we are invoking/checking for enemy every 0.5sec means 2 times only.
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);      
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     private void UpdateTarget()
@@ -56,34 +60,38 @@ public class Turrets : MonoBehaviour
             }
         }
         // if we have found an enemy near us withinh our range
-        if(NearestEnemy != null && ShortestDistance <=range) 
+        if (NearestEnemy != null && ShortestDistance <= range)
         {
             target = NearestEnemy.transform;
+            targetenemy = NearestEnemy.GetComponent<Enemy>();
+
         }
         else
         {
             target = null;
         }
     }
+
     //Gizmo sphere for the range
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
-    //spawning 2 bullets as turrent have 2 shooting barrels
-     private void Shoot()
+
+    private void Shoot()
     {
-        if (target != null) 
+        if (target != null)
         {
-            GameObject bulletshooter = Instantiate(BulletPrefab, BulletFirePoint.position, BulletFirePoint.rotation);         
+            GameObject bulletshooter = Instantiate(BulletPrefab, BulletFirePoint.position, BulletFirePoint.rotation);
             Bullets bullet = bulletshooter.GetComponent<Bullets>();
             if (bullet != null)
             {
                 bullet.Go_Bullet(target);
             }
 
-            if (gameObject.tag == "DoubleBarrelTurret") 
+            //spawning 2 bullets as DoubleBarrel turrent have 2 shooting barrels
+            if (gameObject.tag == "DoubleBarrelTurret")
             {
                 GameObject bulletshooter_2 = Instantiate(BulletPrefab, BulletFirePoint_2.position, BulletFirePoint_2.rotation);
                 Bullets bullet_2 = bulletshooter_2.GetComponent<Bullets>();
@@ -94,23 +102,22 @@ public class Turrets : MonoBehaviour
                     bullet_2.Go_Bullet(target);
                 }
             }
-           
+
         }
-       
+
     }
 
-    private void Update()
+    private void LookOnTarget()
     {
-        if(target == null)
-        {
-            return;
-        }
-
         // if target gets locked on rotating our head with it 
         Vector3 Direction = target.position - transform.position;
         Quaternion TurrentRoatation = Quaternion.LookRotation(Direction);
-        Vector3 Rotation = Quaternion.Lerp(gameObject.transform.rotation, TurrentRoatation,rotationSpeed*Time.deltaTime).eulerAngles;
-        gameObject.transform.rotation = Quaternion.Euler(0f,Rotation.y,0f);
+        Vector3 Rotation = Quaternion.Lerp(gameObject.transform.rotation, TurrentRoatation, rotationSpeed * Time.deltaTime).eulerAngles;
+        gameObject.transform.rotation = Quaternion.Euler(0f, Rotation.y, 0f);
+    }
+
+    private void BulletFirerate()
+    {
 
         if (fireCountDown <= 0)
         {
@@ -119,5 +126,15 @@ public class Turrets : MonoBehaviour
         }
 
         fireCountDown -= Time.deltaTime;
+
+    }
+    private void Update()
+    {
+        if (target == null)
+            return;
+
+        LookOnTarget();
+        BulletFirerate();
+
     }
 }

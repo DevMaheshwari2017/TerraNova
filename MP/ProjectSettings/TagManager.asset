@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - CannonTurret
   - DoubleBarrelTurret
+  - CrossbowTurret
+  - Arrow
   layers:
   - Default
   - TransparentFX

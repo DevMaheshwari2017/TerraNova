@@ -11,13 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main_Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/NetcodePlus/Demo/Scenes/DemoPuzzle.unity
-    guid: 11374a145c7740c478fec77ec17d7679
-  - enabled: 0
-    path: Assets/NetcodePlus/Demo/Scenes/DemoTank.unity
-    guid: a7d07876e0b5f624aac0a05fc9d5afc8
-  - enabled: 0
-    path: Assets/NetcodePlus/Demo/Scenes/Menu.unity
-    guid: 8688a61676144da46aa4feda588f6873
   m_configObjects: {}
