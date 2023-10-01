@@ -9,7 +9,6 @@ public class Turrets : MonoBehaviour
     private GameObject BulletPrefab;
     [SerializeField]
     private Transform BulletFirePoint;
-    [SerializeField]
     private Transform BulletFirePoint_2;
 
     [Header("Turrent Functionalities")]
@@ -25,9 +24,19 @@ public class Turrets : MonoBehaviour
     private void Awake()
     {
         target = null;
+       
     }
     void Start()
-    {
+    {      
+        if (gameObject.CompareTag("DoubleBarrelTurret"))
+        {
+            BulletFirePoint_2 = transform.Find("BulletFirePoint_2");
+            if (BulletFirePoint_2 == null)
+            {
+              Debug.LogError("BulletFirePoint_2 not found as a child of the DoubleBarrelTurret.");
+            }
+        }
+
         //instead of checking if there's any enemy near us 60 times a sec we are invoking/checking for enemy every 0.5sec means 2 times only.
         InvokeRepeating("UpdateTarget", 0f, 0.5f);      
     }
@@ -67,16 +76,25 @@ public class Turrets : MonoBehaviour
     {
         if (target != null) 
         {
-            GameObject bulletshooter = Instantiate(BulletPrefab, BulletFirePoint.position, BulletFirePoint.rotation);
-            GameObject bulletshooter_2 = Instantiate(BulletPrefab, BulletFirePoint_2.position, BulletFirePoint_2.rotation);
+            GameObject bulletshooter = Instantiate(BulletPrefab, BulletFirePoint.position, BulletFirePoint.rotation);         
             Bullets bullet = bulletshooter.GetComponent<Bullets>();
-            Bullets bullet_2 = bulletshooter_2.GetComponent<Bullets>();
-
-            if (bullet != null && bullet_2 != null)
+            if (bullet != null)
             {
                 bullet.Go_Bullet(target);
-                bullet_2.Go_Bullet(target);
             }
+
+            if (gameObject.tag == "DoubleBarrelTurret") 
+            {
+                GameObject bulletshooter_2 = Instantiate(BulletPrefab, BulletFirePoint_2.position, BulletFirePoint_2.rotation);
+                Bullets bullet_2 = bulletshooter_2.GetComponent<Bullets>();
+
+                if (bullet_2 != null)
+                {
+
+                    bullet_2.Go_Bullet(target);
+                }
+            }
+           
         }
        
     }

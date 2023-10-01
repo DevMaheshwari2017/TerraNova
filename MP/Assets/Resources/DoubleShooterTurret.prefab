@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8741271131181431578}
   m_Layer: 0
   m_Name: DoubleShooterTurret
-  m_TagString: Untagged
+  m_TagString: DoubleBarrelTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 7282647272844976180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0060827336, z: -0, w: 0.9999816}
-  m_LocalPosition: {x: -0.104127884, y: -0.931, z: 1.0413437}
+  m_LocalPosition: {x: -0.039, y: -0.951, z: 1.108}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Head
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 72f352ccb1104cd4399adf139d8f65a0, type: 3}
+      propertyPath: m_TagString
+      value: DoubleBarrelTurret
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -280,7 +284,6 @@ MonoBehaviour:
   target: {fileID: 8587876238269885572, guid: 3f70b0d0179579d4b8dc3e25445964ad, type: 3}
   BulletPrefab: {fileID: 3778587665735601681, guid: 264db29c567cc5f44a0169e90a12e434, type: 3}
   BulletFirePoint: {fileID: 4499537602498286726}
-  BulletFirePoint_2: {fileID: 1865359671018891618}
   range: 1.7
   rotationSpeed: 5
   Firerate: 1
