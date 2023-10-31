@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-public class GroundHighlight : MonoBehaviour
+using Photon.Pun;
+public class GroundHighlight : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private Color hovercolor;
@@ -90,12 +90,12 @@ public class GroundHighlight : MonoBehaviour
         Destroy(turret);
 
         //building the upgaraded version of the turret
-        GameObject Turret = Instantiate(turretblueprint.lv2prefab, GetTurretBuildPos(), Quaternion.identity);
+        GameObject Turret =PhotonNetwork.Instantiate(turretblueprint.lv2prefab.name, GetTurretBuildPos(), Quaternion.identity);
         
         //setting the GroundHighlight/ our grounds turret object to out turret that we are instaniating, turret is hidden in our inspector. 
         turret = Turret;
         //An particle effect that shows up when we upgrade our turret
-        GameObject Effects = Instantiate(buildmanager.buildParticleEffect, transform.position, Quaternion.identity);
+        GameObject Effects = PhotonNetwork.Instantiate(buildmanager.buildParticleEffect.name, transform.position, Quaternion.identity);
         Destroy(Effects, 4f);
 
         isUpgraded = true;
@@ -107,7 +107,7 @@ public class GroundHighlight : MonoBehaviour
     public void SellTurret()
     {
         PlayerStats.Money += turretblueprint.sellAmount;
-        GameObject sellEffect = Instantiate(buildmanager.sellingParticleEffect, GetTurretBuildPos(), Quaternion.identity);
+        GameObject sellEffect = PhotonNetwork.Instantiate(buildmanager.sellingParticleEffect.name, GetTurretBuildPos(), Quaternion.identity);
         Destroy(turret);
         Destroy(sellEffect, 4f);        
         turretblueprint = null;

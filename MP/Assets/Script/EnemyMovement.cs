@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
@@ -38,6 +36,7 @@ public class EnemyMovement : MonoBehaviour
     private void EnemyHitCastle()
     {
         PlayerStats.lives--;
+        WaveManager.EnemiesAlive--;
         Destroy(gameObject);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
-
-public class Turrets : MonoBehaviour
+using Photon.Pun;
+public class Turrets : MonoBehaviourPunCallbacks
 {
     [Header("Unity Inspector field")]
     [SerializeField]
@@ -83,7 +83,7 @@ public class Turrets : MonoBehaviour
     {
         if (target != null)
         {
-            GameObject bulletshooter = Instantiate(BulletPrefab, BulletFirePoint.position, BulletFirePoint.rotation);
+            GameObject bulletshooter = PhotonNetwork.Instantiate(BulletPrefab.name, BulletFirePoint.position, BulletFirePoint.rotation);
             Bullets bullet = bulletshooter.GetComponent<Bullets>();
             if (bullet != null)
             {
@@ -93,7 +93,7 @@ public class Turrets : MonoBehaviour
             //spawning 2 bullets as DoubleBarrel turrent have 2 shooting barrels
             if (gameObject.tag == "DoubleBarrelTurret")
             {
-                GameObject bulletshooter_2 = Instantiate(BulletPrefab, BulletFirePoint_2.position, BulletFirePoint_2.rotation);
+                GameObject bulletshooter_2 = PhotonNetwork.Instantiate(BulletPrefab.name, BulletFirePoint_2.position, BulletFirePoint_2.rotation);
                 Bullets bullet_2 = bulletshooter_2.GetComponent<Bullets>();
 
                 if (bullet_2 != null)

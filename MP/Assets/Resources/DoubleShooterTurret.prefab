@@ -40,6 +40,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8741271131181431578}
+  - component: {fileID: -3278080836883847179}
+  - component: {fileID: -8743195599360466865}
   m_Layer: 0
   m_Name: DoubleShooterTurret
   m_TagString: DoubleBarrelTurret
@@ -64,6 +66,44 @@ Transform:
   - {fileID: 8715000771445661156}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3278080836883847179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100636518388978537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-8743195599360466865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100636518388978537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &5597233083957255069
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 7282647272844976180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0060827336, z: -0, w: 0.9999816}
-  m_LocalPosition: {x: -0.039, y: -0.951, z: 1.108}
+  m_LocalPosition: {x: 0.029, y: 0.341, z: 0.051}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -137,15 +177,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d5f56d9c8920e6d4f86187ec66e2cd73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07474804
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5f56d9c8920e6d4f86187ec66e2cd73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2926455
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5f56d9c8920e6d4f86187ec66e2cd73, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0461588
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5f56d9c8920e6d4f86187ec66e2cd73, type: 3}
       propertyPath: m_LocalRotation.w
@@ -284,6 +324,6 @@ MonoBehaviour:
   target: {fileID: 8587876238269885572, guid: 3f70b0d0179579d4b8dc3e25445964ad, type: 3}
   BulletPrefab: {fileID: 3778587665735601681, guid: 264db29c567cc5f44a0169e90a12e434, type: 3}
   BulletFirePoint: {fileID: 4499537602498286726}
-  range: 1.7
+  range: 1.5
   rotationSpeed: 5
-  Firerate: 1
+  Firerate: 1.2

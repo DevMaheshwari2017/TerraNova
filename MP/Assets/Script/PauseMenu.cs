@@ -4,6 +4,10 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject pauseUI;
+    [SerializeField]
+    private FadingScene sceneFader;
+    [SerializeField]
+    private int MainMenuBuildIndex =1;
 
     private void Start()
     {
@@ -35,11 +39,15 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Pause();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        WaveManager.EnemiesAlive = 0;        
+        sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
+        
     }
 
     public void Menu()
     {
-        Debug.Log("Going to main menu");
+        Pause();
+        WaveManager.EnemiesAlive = 0;
+        sceneFader.FadeTo(MainMenuBuildIndex);
     }
 }

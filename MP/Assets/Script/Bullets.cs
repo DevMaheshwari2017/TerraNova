@@ -1,6 +1,6 @@
 using UnityEngine;
-
-public class Bullets : MonoBehaviour
+using Photon.Pun;
+public class Bullets : MonoBehaviourPunCallbacks
 {
     private Transform target;
     [SerializeField]
@@ -38,7 +38,7 @@ public class Bullets : MonoBehaviour
     }
     private void TargetHit()
     {
-        GameObject Effects = Instantiate(BulletHitParticalEffects, transform.position, transform.rotation);
+        GameObject Effects = PhotonNetwork.Instantiate(BulletHitParticalEffects.name, transform.position, transform.rotation);
         Destroy(Effects, 3.5f);
         if (exlposionradius > 0f)
         {

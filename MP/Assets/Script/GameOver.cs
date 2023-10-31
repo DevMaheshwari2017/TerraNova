@@ -3,13 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    [SerializeField]
+    private FadingScene scenefader;
+    [SerializeField]
+    private int mainMenuBuildIndex=1;
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        scenefader.FadeTo(SceneManager.GetActiveScene().buildIndex); 
     }
 
     public void MainMenu()
     {
-        Debug.Log("Main menu");
+        scenefader.FadeTo(mainMenuBuildIndex);
     }
 }

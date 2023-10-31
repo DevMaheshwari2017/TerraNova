@@ -1,16 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class Enemy : MonoBehaviour
+using UnityEngine.UI;
+using Photon.Pun;
+public class Enemy : MonoBehaviourPunCallbacks
 {
     [Header("Enemy properties")]
     [SerializeField]
-    private float enemyhealth = 100;
+    private float enemyStartHealth = 100;
+    [SerializeField]
+    private float currentEnemyHealth;
     [SerializeField]
     private int MoneyGain = 15;
     [SerializeField]
     private GameObject DeathEffect;
+    [SerializeField]
+    private Image healthBar;
 
     //private Bullets bullet;
 
@@ -25,14 +28,17 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {       
-        bleedinglighteffect.SetActive(false);       
+        bleedinglighteffect.SetActive(false);
+        currentEnemyHealth = enemyStartHealth;
     }
     public void TakeDamage(float dmg)
     {
-        enemyhealth -= dmg;
-        if (enemyhealth <= 0)
+        currentEnemyHealth -= dmg;
+        // the filled that we are using inside inspector works btw 0-1 so we need something like 100/100 but insead of hard coding we use currentenemyhealth.
+        healthBar.fillAmount = currentEnemyHealth / enemyStartHealth;
+        if (currentEnemyHealth <= 0)
         {
-            Debug.Log("Enemy is dead " + enemyhealth);
+            Debug.Log("Enemy is dead " + currentEnemyHealth);
             EnemyDead();
         }
     }
@@ -57,16 +63,16 @@ public class Enemy : MonoBehaviour
         {
             TakeDamage(bleedingovertime * Time.deltaTime);
             Debug.Log("Enemy health is depleting over time " + bleedingovertime);
-            Debug.Log("EnemyHeal is " + enemyhealth);
+            Debug.Log("EnemyHeal is " + currentEnemyHealth);
         }
     }
-
 
     private void EnemyDead()
     {
         PlayerStats.Money += MoneyGain;
-        GameObject Effects = Instantiate(DeathEffect, transform.position, Quaternion.identity);
+        GameObject Effects =PhotonNetwork.Instantiate(DeathEffect.name, transform.position, Quaternion.identity);
         Destroy(Effects, 4f);
+        WaveManager.EnemiesAlive--;
         Destroy(gameObject);
     }
 
