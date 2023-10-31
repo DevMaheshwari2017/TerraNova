@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviourPunCallbacks
 {
+    public static int EnemiesAlive = 0;
+
     [SerializeField]
-    private Transform EnemyPrefab;
+    private Waves[] waves;
     [SerializeField]
     private Transform SpawnPosition;
     [SerializeField]
@@ -18,28 +21,39 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        WaveIndex++;
-
-        NumofWaveText.text = "Wave " + WaveIndex.ToString();
-        int NumofEnemy = WaveIndex + WaveIndex;        
-        for (int i = 0; i < NumofEnemy; i++)
-        {
-            SpawnEnemy();
-            yield return new WaitForSeconds(1);
+        if(WaveIndex == waves.Length && EnemiesAlive == 0)
+        {           
+            Debug.Log("game completed");
+            GameManager.Instance.GameWon = true;
+            this.enabled = false;
         }
+        Waves wave = waves[WaveIndex];       
+        for (int i = 0; i < wave.count; i++)
+        {
+            SpawnEnemy(wave.enemy);
+            yield return new WaitForSeconds(1f/wave.rate);
+        }
+        WaveIndex++;
+        NumofWaveText.text = "Wave " + WaveIndex.ToString();
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(EnemyPrefab, SpawnPosition.position, SpawnPosition.rotation);
+        PhotonNetwork.Instantiate(enemy.name, SpawnPosition.position, SpawnPosition.rotation);
+        EnemiesAlive++;
     }
 
     private void Update()
     {
+        if (EnemiesAlive > 0)
+        {
+            return;
+        }
         if(WaveStarter <= 0)
         {
             StartCoroutine(SpawnWave());
             WaveStarter = TimeBetweenWaves;
+            return;
         }
 
         WaveStarter -= Time.deltaTime;

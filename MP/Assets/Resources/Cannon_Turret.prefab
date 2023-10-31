@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8476316692790169390}
+  - component: {fileID: 7456452114901926249}
+  - component: {fileID: 3020264481344501130}
   m_Layer: 0
   m_Name: Cannon_Turret
   m_TagString: CannonTurret
@@ -33,6 +35,44 @@ Transform:
   - {fileID: 3413615242953744659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7456452114901926249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601110365968576737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &3020264481344501130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601110365968576737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &5732344563001288664
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,15 +126,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ed01e162030114fa56b465602997d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0636127
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ed01e162030114fa56b465602997d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.445
+      value: 0.557
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ed01e162030114fa56b465602997d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.44632006
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ed01e162030114fa56b465602997d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -163,9 +203,9 @@ MonoBehaviour:
   target: {fileID: 8587876238269885572, guid: 3f70b0d0179579d4b8dc3e25445964ad, type: 3}
   BulletPrefab: {fileID: 7304586738040935792, guid: 4a37163ecdf440b48a728a2b2ff10ff2, type: 3}
   BulletFirePoint: {fileID: 3282646716120247712}
-  range: 1.65
+  range: 1.4
   rotationSpeed: 5.5
-  Firerate: 1
+  Firerate: 0.5
 --- !u!4 &3413615242953744659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 01ed01e162030114fa56b465602997d8, type: 3}
@@ -193,15 +233,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4efe2444792880e48bda9dcb877edbb7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.061612606
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4efe2444792880e48bda9dcb877edbb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99898666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4efe2444792880e48bda9dcb877edbb7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.46731997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4efe2444792880e48bda9dcb877edbb7, type: 3}
       propertyPath: m_LocalRotation.w
