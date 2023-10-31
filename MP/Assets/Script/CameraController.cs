@@ -26,6 +26,12 @@ public class CameraController : MonoBehaviour
     private float zoomspeed = 10f;
     void Update()
     {
+        if (GameManager.isgameover)
+        {
+            this.enabled = false;
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             cameramovement = !cameramovement;

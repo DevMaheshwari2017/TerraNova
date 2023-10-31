@@ -29,6 +29,13 @@ public class Bullets : MonoBehaviour
         }
     }
 
+    public bool AttachedToArrow()
+    {
+        if (gameObject.CompareTag("Arrow"))
+            return true;
+        
+        return false;
+    }
     private void TargetHit()
     {
         GameObject Effects = Instantiate(BulletHitParticalEffects, transform.position, transform.rotation);
@@ -45,12 +52,18 @@ public class Bullets : MonoBehaviour
     }
     private void Damage(Transform enemy)
     {
-        EnemyMovement _enemy = enemy.GetComponent<EnemyMovement>();
+        Enemy _enemy = enemy.GetComponent<Enemy>();
         if(_enemy == null)
         {
-            Debug.Log("EnemyMovement is null inside bullet script");
+            Debug.Log("Enemy is null inside bullet script");
         }
-        _enemy.TakeDamage(Dmg);
+        if (AttachedToArrow())
+        {
+            _enemy.arrowThatHitMe = gameObject;
+            Debug.Log("Arrow component got attached to the enemy");
+        }
+            _enemy.TakeDamage(Dmg);
+        
     }
 
     private void OnDrawGizmosSelected()

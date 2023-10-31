@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     private GameObject PlPrefab;
     [SerializeField]
     private GameObject Canvas;
-    private bool isgameover;
+    [SerializeField]
+    private GameObject gameoverpanel;
+    public static bool isgameover;
     void Start()
     {
         UIManager UI = UIManager.Instance;
@@ -19,6 +21,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             Canvas = GameObject.FindWithTag("Canvas");
             Canvas.SetActive(false);         
         }
+
+        isgameover = false;
 
     }
 
@@ -34,6 +38,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void GameOver()
     {
-        Debug.Log("Game Over");
+        isgameover = true;
+        gameoverpanel.SetActive(true);
     }
 }

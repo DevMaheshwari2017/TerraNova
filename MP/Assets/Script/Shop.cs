@@ -6,6 +6,8 @@ public class Shop : MonoBehaviour
     private TurretBlueprint DoublebarrelTurret;
     [SerializeField]
     private TurretBlueprint CannonTurret;
+    [SerializeField]
+    private TurretBlueprint CrossbowTurret;
 
     TurrentsBuildManager buidmanager;
     private void Start()
@@ -20,5 +22,10 @@ public class Shop : MonoBehaviour
     public void SelectedCannon()
     {
         buidmanager.SelectTurretToBuild(CannonTurret);
+    }
+
+    public void SelectedCrossbow()
+    {
+        buidmanager.SelectTurretToBuild(CrossbowTurret);
     }
 }
